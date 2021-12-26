@@ -4,7 +4,7 @@ public class Jig {
     private String pkcCode;
     private int id;
     private boolean isHasLeg;
-    private Storage storage;
+    private JigStorage storage;
     private int totalQty;
 
     public Jig(String pkcCode) {
