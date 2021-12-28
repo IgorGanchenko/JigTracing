@@ -5,7 +5,6 @@ public class JigStorage extends Storage {
 
     private int height;
     private int wight;
-    private HashMap<Jig, Integer> existedJigs = new HashMap<Jig, Integer>();
 
     private Jig[][] storagePlaces;
 
@@ -32,6 +31,42 @@ public class JigStorage extends Storage {
             putJigToEmptySpace(jig);
             existedJigs.put(jig, qty);
             return true;
+        }
+        return false;
+    }
+
+    @Override ///fix here 
+    protected boolean removeOneJig(Jig jig, int qty) {
+        if (existedJigs.containsKey(jig)) {
+            int oldQty = existedJigs.get(jig);
+            if (oldQty >= qty) {
+                existedJigs.replace(jig, oldQty - qty);
+                cleanStoragePlaceIfEmpty(jig);
+            } else {
+                existedJigs.replace(jig, qty - oldQty);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean cleanStoragePlaceIfEmpty(Jig jig) {
+        if (existedJigs.get(jig) == 0) {
+            existedJigs.remove(jig);
+            return cleanStoragePlace(jig);
+        }
+        return false;
+    }
+
+    private boolean cleanStoragePlace(Jig seekingJig) {
+        for (Jig[] storagePlace : storagePlaces) {
+            for (Jig jig : storagePlace) {
+                if (jig.equals(seekingJig)) {
+                    jig = null;
+                    return true;
+                }
+            }
         }
         return false;
     }

@@ -21,33 +21,38 @@ public class Main {
         jigNeededForHarn.put(t2520, 3);
         jigNeededForHarn.put(r2810, 2);
 
-        HashMap<Jig, Integer> jigInstall = new HashMap<Jig, Integer>();
-        jigInstall.put(n3434, 1);
-        jigInstall.put(t2520, 2);
-        jigInstall.put(r2810, 3);
+        HashMap<Jig, Integer> jigInstallHarness = new HashMap<Jig, Integer>();
+        jigInstallHarness.put(n3434, 1);
+        jigInstallHarness.put(t2520, 2);
+        jigInstallHarness.put(r2810, 3);
 
+        HashMap<Jig, Integer> jigsTrancfer = new HashMap<Jig, Integer>();
+        jigsTrancfer.put(n3434,1);
+        jigsTrancfer.put(t2520,1);
+        jigsTrancfer.put(r2810,1);
 
         AssemblyBoard board = new AssemblyBoard("Bord1", jigNeededForHarn);
-        System.out.println("Board before:");
         board.showInstalledJigs();
-
-
-        board.installJigs(jigInstall);
-        board.installJigs(jigInstall);
-        board.installJigs(jigInstall);
-        board.installJigs(jigInstall);
-        board.installJigs(jigInstall);
-        board.installJigs(jigInstall);
+        board.installJigs(jigInstallHarness);
         System.out.println("Board after:");
         board.showInstalledJigs();
-
-//        board.installJigs(jigInstall);
 
         JigStorage storage = new JigStorage("JigStorage", 5, 4);
         storage.installJigs(jigForStorage);
 
-        System.out.println("Storage before transfer:");
+        System.out.println("Storage after adding:");
         storage.showInstalledJigs();
+
+        storage.transferJigs(board,jigsTrancfer);
+        storage.transferJigs(board,jigsTrancfer);
+
+        System.out.println("Storage after transfer:");
+        storage.showInstalledJigs();
+        storage.showStorage();
+
+        System.out.println("Harness after transfer:");
+        board.showInstalledJigs();
+
 
 //        storage.transferJigs(board);
 //

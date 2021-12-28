@@ -25,12 +25,16 @@ public abstract class Storage {
         for (Map.Entry<Jig, Integer> entry : transferredJigs.entrySet()) {
             Jig jig = entry.getKey();
             int qty = entry.getValue();
-            if (existedJigs.containsKey(jig) && (qty < existedJigs.get(jig))) {
-                existedJigs.replace(jig, qty);
-                distStorage.addOneJig(jig, qty);
-            }
+//            if (existedJigs.containsKey(jig) && (qty < existedJigs.get(jig))) {
+//                existedJigs.replace(jig, qty);
+//                distStorage.addOneJig(jig, qty);
+//            }
+            distStorage.addOneJig(jig, qty);
+            removeOneJig(jig,qty);
         }
     }
+
+    protected abstract boolean removeOneJig(Jig jig, int qty);
 
     protected void showInstalledJigs() {
         for (Map.Entry<Jig, Integer> entry : existedJigs.entrySet()) {

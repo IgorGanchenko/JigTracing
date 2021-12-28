@@ -35,7 +35,7 @@ public class AssemblyBoard extends Storage {
     protected boolean addOneJig(Jig jig, int qty) {
         if (neededJigs.containsKey(jig)) {
             if (existedJigs.containsKey(jig)) {
-                if (existedJigs.get(jig) == neededJigs.get(jig)) {
+                if (existedJigs.get(jig).equals(neededJigs.get(jig))) {
                     return false;
                 } else {
                     int necessaryQty = neededJigs.get(jig) - existedJigs.get(jig);
@@ -52,6 +52,11 @@ public class AssemblyBoard extends Storage {
             System.out.printf("Harness %s not contains %s jig\n", name, jig);
             return false;
         }
+    }
+
+    @Override
+    protected boolean removeOneJig(Jig jig, int qty) {
+        return false;
     }
 
 
