@@ -35,7 +35,7 @@ public class JigStorage extends Storage {
         return false;
     }
 
-    @Override ///fix here 
+    @Override
     protected boolean removeOneJig(Jig jig, int qty) {
         if (existedJigs.containsKey(jig)) {
             int oldQty = existedJigs.get(jig);
@@ -60,10 +60,12 @@ public class JigStorage extends Storage {
     }
 
     private boolean cleanStoragePlace(Jig seekingJig) {
-        for (Jig[] storagePlace : storagePlaces) {
-            for (Jig jig : storagePlace) {
-                if (jig.equals(seekingJig)) {
-                    jig = null;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < wight; j++) {
+                Jig jig = storagePlaces[i][j];
+                if (jig != null && jig.equals(seekingJig)) {
+                    storagePlaces[i][j] = null;
+                    System.out.printf("Jig %s in place %s - %s in storage %s nas been removed.\n", jig, i, j, name);
                     return true;
                 }
             }
@@ -97,10 +99,13 @@ public class JigStorage extends Storage {
     }
 
     public void showStorage() {
-        for (Jig[] storagePlace : storagePlaces) {
-            for (Jig value : storagePlace) {
-                if (value != null) {
-                    System.out.println(value.getPkcCode() + " - " + existedJigs.get(value));
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < wight; j++) {
+                Jig jig = storagePlaces[i][j];
+                if (jig != null) {
+                    System.out.println("Place " + i + "-" + j + " " + jig.getPkcCode() + " - " + existedJigs.get(jig));
+                } else {
+                    System.out.println("Place " + i + "-" + j + " " + "empty");
                 }
             }
         }

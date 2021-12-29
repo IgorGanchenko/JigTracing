@@ -56,6 +56,15 @@ public class AssemblyBoard extends Storage {
 
     @Override
     protected boolean removeOneJig(Jig jig, int qty) {
+        if (existedJigs.containsKey(jig)) {
+            int currentQty = existedJigs.get(jig);
+            int necessaryQty = Math.min(currentQty, qty);
+            existedJigs.replace(jig, currentQty - necessaryQty);
+            if (existedJigs.get(jig) == 0) {
+                existedJigs.remove(jig);
+            }
+            return true;
+        }
         return false;
     }
 
