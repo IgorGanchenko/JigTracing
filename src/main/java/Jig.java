@@ -1,14 +1,21 @@
 import java.util.Objects;
 
 public class Jig {
+    private static int totalQty = 0;
     private String pkcCode;
     private int id;
     private boolean isHasLeg;
     private JigStorage storage;
-    private int totalQty;
+
 
     public Jig(String pkcCode) {
         this.pkcCode = pkcCode;
+        totalQty++;
+    }
+
+    public static int getTotalQty() {
+        int qty = totalQty;
+        return qty;
     }
 
     public String getPkcCode() {

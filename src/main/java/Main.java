@@ -58,36 +58,5 @@ public class Main {
         storage.showStorage();
         board.showInstalledJigs();
 
-
-
-
-
-//        storage.transferJigs(board);
-//
-//        System.out.println("After transfer:");
-//        storage.showStorage();
-//
-//        HashMap<Jig, Integer> listOfNeededJigs = board.getNeededJigs();
-//        HashMap<Jig, Integer> listOfInstalledJigs = board.getInstalledJigs();
-//
-//        System.out.println("Needed jigs:");
-//        listOfInstalledJigs.keySet().forEach(System.out::println);
-//
-//        System.out.println("Installed jigs:");
-//        listOfNeededJigs.keySet().forEach(System.out::println);
-
     }
-
-//    private static void autoFillingStorageWithJigs(JigStorage storage) {
-//        int counter = 0;
-//        for (int i = 0; i < qtyOfJigs; i++) {
-//            counter++;
-//            Jig jig = new Jig("Jig_" + counter);
-//            storage.addOneJig(jig);
-//            if (counter == 21) {
-//                counter = 0;
-//            }
-//        }
-//    }
-
 }
