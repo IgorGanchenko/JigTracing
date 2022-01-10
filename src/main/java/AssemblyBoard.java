@@ -1,3 +1,6 @@
+import main.response.Jig;
+import main.response.Storage;
+
 import java.util.HashMap;
 import java.util.Map;
 

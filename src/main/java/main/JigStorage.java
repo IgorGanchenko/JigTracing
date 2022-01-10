@@ -1,3 +1,8 @@
+package main;
+
+import main.response.Jig;
+import main.response.Storage;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,7 +70,7 @@ public class JigStorage extends Storage {
                 Jig jig = storagePlaces[i][j];
                 if (jig != null && jig.equals(seekingJig)) {
                     storagePlaces[i][j] = null;
-                    System.out.printf("Jig %s in place %s - %s in storage %s nas been removed.\n", jig, i, j, name);
+                    System.out.printf("main.response.Jig %s in place %s - %s in storage %s nas been removed.\n", jig, i, j, name);
                     return true;
                 }
             }
@@ -90,7 +95,7 @@ public class JigStorage extends Storage {
             for (int j = 0; j < storagePlaces[i].length; j++) {
                 if (storagePlaces[i][j] == null) {
                     storagePlaces[i][j] = jig;
-                    System.out.printf("Jig %s has been added to storage %s\n", jig.getPkcCode(), name);
+                    System.out.printf("main.response.Jig %s has been added to storage %s\n", jig.getPkcCode(), name);
                     return true;
                 }
             }
