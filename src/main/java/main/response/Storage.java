@@ -38,7 +38,7 @@ public abstract class Storage {
 
     protected abstract boolean removeOneJig(Jig jig, int qty);
 
-    protected void showInstalledJigs() {
+    public void showInstalledJigs() {
         for (Map.Entry<Jig, Integer> entry : existedJigs.entrySet()) {
             Jig jig = entry.getKey();
             if (jig != null) {

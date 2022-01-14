@@ -13,11 +13,22 @@ public class Jig {
     @Column(name = "pkc_code")
     private String pkcCode;
 
+    private int qty;
+
     @Column(name = "storage_id")
     private int storageId;
 
-    public Jig(String pkcCode){
+    public Jig(String pkcCode, int qty) {
         this.pkcCode = pkcCode;
+        this.qty = qty;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     public int getId() {
