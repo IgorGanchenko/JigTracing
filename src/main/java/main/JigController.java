@@ -17,7 +17,7 @@ public class JigController {
     @Autowired
     private JigRepository jigRepository;
 
-    @RequestMapping(value = "/jigs_add/{pkcCode}/{qty}", method = RequestMethod.GET)
+    @RequestMapping(value = "/jigs_add/{pkcCode}/{qty}", method = RequestMethod.POST)
     public ResponseEntity add(@PathVariable("pkcCode") String pkcCode,
                               @PathVariable("qty") int qty) {
         Jig jig = new Jig(pkcCode, qty);
