@@ -7,6 +7,7 @@ import main.response.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +18,13 @@ public class JigController {
     @Autowired
     private JigRepository jigRepository;
 
-    @RequestMapping(value = "/jigs_add/{pkcCode}/{qty}", method = RequestMethod.POST)
-    public ResponseEntity add(@PathVariable("pkcCode") String pkcCode,
-                              @PathVariable("qty") int qty) {
+
+    //@RequestMapping(value = "/jigs_add/{pkcCode, qty}", method = RequestMethod.POST)
+//    @PathVariable("pkcCode") String pkcCode,
+//    @PathVariable("qty") int qty) {
+    @RequestMapping(value = "/jigs_add/", method = RequestMethod.POST)
+    public ResponseEntity add(@RequestParam(value = "pkcCode", required = true) String pkcCode,
+                              @RequestParam(value = "qty", required = true) int qty) {
         Jig jig = new Jig(pkcCode, qty);
         jigRepository.save(jig);
 
