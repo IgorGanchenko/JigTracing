@@ -18,6 +18,13 @@ public class Jig {
     @Column(name = "storage_id")
     private int storageId;
 
+    public Jig(){
+        this.id = 0;
+        this.pkcCode = "";
+        this.qty = 0;
+        this.storageId = 0;
+    }
+
     public Jig(String pkcCode, int qty) {
         this.pkcCode = pkcCode;
         this.qty = qty;

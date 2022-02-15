@@ -18,24 +18,47 @@ public class JigController {
     @Autowired
     private JigRepository jigRepository;
 
-
-    //@RequestMapping(value = "/jigs_add/{pkcCode, qty}", method = RequestMethod.POST)
-//    @PathVariable("pkcCode") String pkcCode,
-//    @PathVariable("qty") int qty) {
-    @RequestMapping(value = "/jigs_add/", method = RequestMethod.POST)
+    @RequestMapping(value = "/jigs/", method = RequestMethod.POST)
     public ResponseEntity add(@RequestParam(value = "pkcCode", required = true) String pkcCode,
                               @RequestParam(value = "qty", required = true) int qty) {
         Jig jig = new Jig(pkcCode, qty);
         jigRepository.save(jig);
-
         MainStorage mainStorage = new MainStorage();
         mainStorage.addOneJig(jig, qty); ///fix
-
         mainStorage.showInstalledJigs();
         long newJig = jigRepository.count();
         System.out.println(newJig);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/jigs/", method = RequestMethod.DELETE)
+    public ResponseEntity remove(@RequestParam(value = "pkcCode", required = true) String pkcCode) {
+        int id = -1;
+        Iterable<Jig> jigs = jigRepository.findAll();
+        for (Jig jig : jigs) {
+            if (jig.getPkcCode().equals(pkcCode)) {
+                id = jig.getId();
+                jigRepository.deleteById(id);
+                return new ResponseEntity(HttpStatus.OK);
+            }
+        }
+        System.out.printf("Code,%s is not found\n", pkcCode);
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+//    Iterable<Message> messages = messageRepository.findAll();
+//        for(Message message : messages) {
+//        MessageResponse messageItem = new MessageResponse();
+//        messageItem.setName(message.getUser().getName());
+//        messageItem.setTime(
+//                formatter.format(message.getSendTime())
+//        );
+//        messageItem.setText(message.getText());
+//        messagesList.add(messageItem);
+//    }
+//    HashMap<String, List> response = new HashMap<>();
+//        response.put("messages", messagesList);
+//        return response;
+
 
 //    @GetMapping("/books/{id}")
 //    public ResponseEntity<?> get(@PathVariable int id) {
