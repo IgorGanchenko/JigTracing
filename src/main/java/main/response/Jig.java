@@ -1,7 +1,12 @@
 package main.response;
 
+import main.response.asssemblyBoard.AssemblyBoard;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "jig")
@@ -15,19 +20,24 @@ public class Jig {
 
     private int qty;
 
-    @Column(name = "storage_id")
-    private int storageId;
+    @ManyToMany
+    @JoinTable(
+            name = "jigs_in_storage",
+            joinColumns = @JoinColumn(name = "storage_id"),
+            inverseJoinColumns = @JoinColumn(name = "jig_id"))
+    private Set<AssemblyBoard> assemblyBoards;
 
-    public Jig(){
+    public Jig() {
         this.id = 0;
         this.pkcCode = "";
         this.qty = 0;
-        this.storageId = 0;
+        this.assemblyBoards = new HashSet<>();
     }
 
     public Jig(String pkcCode, int qty) {
         this.pkcCode = pkcCode;
         this.qty = qty;
+        this.assemblyBoards = new HashSet<>();
     }
 
     public int getQty() {
@@ -54,12 +64,12 @@ public class Jig {
         this.pkcCode = pkcCode;
     }
 
-    public int getStorageId() {
-        return storageId;
+    public Set<AssemblyBoard> getAssemblyBoards() {
+        return assemblyBoards;
     }
 
-    public void setStorageId(int storageId) {
-        this.storageId = storageId;
+    public void setAssemblyBoards(Set<AssemblyBoard> assemblyBoards) {
+        this.assemblyBoards = assemblyBoards;
     }
 
 //public Jig(String pkcCode) {

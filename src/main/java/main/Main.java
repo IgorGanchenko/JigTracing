@@ -34,7 +34,7 @@ public class Main {
 //        jigsTrancfer.put(t2520, 1);
 //        jigsTrancfer.put(r2810, 1);
 //
-//        AssemblyBoard board = new AssemblyBoard("Bord1", jigNeededForHarn);
+//        main.response.asssemblyBoard.AssemblyBoard board = new main.response.asssemblyBoard.AssemblyBoard("Bord1", jigNeededForHarn);
 //        board.showInstalledJigs();
 //        board.installJigs(jigInstallHarness);
 //        System.out.println("Board after:");

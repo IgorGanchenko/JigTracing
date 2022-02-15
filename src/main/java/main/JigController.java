@@ -4,6 +4,8 @@ import main.response.Jig;
 import main.response.JigRepository;
 import main.response.MainStorage;
 import main.response.Storage;
+import main.response.asssemblyBoard.AssemblyBoard;
+import main.response.asssemblyBoard.AssemblyBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +20,19 @@ public class JigController {
     @Autowired
     private JigRepository jigRepository;
 
+    @Autowired
+    private AssemblyBoardRepository boardRepository;
+
     @RequestMapping(value = "/jigs/", method = RequestMethod.POST)
     public ResponseEntity add(@RequestParam(value = "pkcCode", required = true) String pkcCode,
                               @RequestParam(value = "qty", required = true) int qty) {
         Jig jig = new Jig(pkcCode, qty);
         jigRepository.save(jig);
-        MainStorage mainStorage = new MainStorage();
-        mainStorage.addOneJig(jig, qty); ///fix
-        mainStorage.showInstalledJigs();
+
+        AssemblyBoard assemblyBoard = new AssemblyBoard("VOL25543409");
+        assemblyBoard.addOneJig(jig);
+        boardRepository.save(assemblyBoard);
+
         long newJig = jigRepository.count();
         System.out.println(newJig);
         return new ResponseEntity(HttpStatus.OK);
