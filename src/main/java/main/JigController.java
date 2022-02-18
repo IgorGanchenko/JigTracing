@@ -31,6 +31,7 @@ public class JigController {
 
         AssemblyBoard assemblyBoard = new AssemblyBoard("VOL25543409");
         assemblyBoard.addOneJig(jig);
+        jig.getAssemblyBoards().add(assemblyBoard);
         boardRepository.save(assemblyBoard);
 
         long newJig = jigRepository.count();

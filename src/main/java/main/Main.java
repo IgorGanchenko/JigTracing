@@ -3,13 +3,26 @@ package main;
 import main.response.Jig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
 
+//        ConfigurableApplicationContext configurableApplicationContext =
+//                SpringApplication.run(Main.class, args);
 
+//        Beans
+//        CartRepository cartRepository = configurableApplicationContext.getBean(CartRepository.class);
+//        UniversityRepository universityRepository = configurableApplicationContext.getBean(UniversityRepository.class);
+//        StudentRepository studentRepository = configurableApplicationContext.getBean(StudentRepository.class);
+//        UserRepository userRepository = configurableApplicationContext.getBean(UserRepository.class);
+//        AddressRepository addressRepository = configurableApplicationContext.getBean(AddressRepository.class);
+//        CarRepository carRepository = configurableApplicationContext.getBean(CarRepository.class);
+//        OwnerRepository ownerRepository = configurableApplicationContext.getBean(OwnerRepository.class);
+//        StreamRepository streamRepository = configurableApplicationContext.getBean(StreamRepository.class);
+//        ViewerRepository viewerRepository = configurableApplicationContext.getBean(ViewerRepository.class);
 
 //        System.out.println( n3434 + " " + t2520 + " " + r2810 + " " + rrr10);
 

@@ -23,8 +23,8 @@ public class Jig {
     @ManyToMany
     @JoinTable(
             name = "jigs_in_storage",
-            joinColumns = @JoinColumn(name = "storage_id"),
-            inverseJoinColumns = @JoinColumn(name = "jig_id"))
+            joinColumns = @JoinColumn(name = "jig_id"),
+            inverseJoinColumns = @JoinColumn(name = "storage_id"))
     private Set<AssemblyBoard> assemblyBoards;
 
     public Jig() {
